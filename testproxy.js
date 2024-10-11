@@ -1,17 +1,18 @@
-import fetch from 'node-fetch';
-import { HttpsProxyAgent } from 'https-proxy-agent';
-import { HttpProxyAgent } from 'http-proxy-agent';
+const fetch = require('node-fetch');
+const { HttpsProxyAgent } = require('https-proxy-agent');
+const { HttpProxyAgent } = require('http-proxy-agent');
+const dotenv = require("dotenv");
+dotenv.config();
 
 // Main function to get protection token
 async function testProxy(action) {
-  const proxyAgent = new HttpProxyAgent('http://43dle0eolrojlw1ovjpdj:y5inwf9thsgg1uev047de4@20.62.44.172:8888');
-  const proxyAgentsHttps = new HttpsProxyAgent('http://43dle0eolrojlw1ovjpdj:y5inwf9thsgg1uev047de4@20.62.44.172:8888');
+  const proxyAgent = new HttpProxyAgent(process.env.PROXY_URL);
+  const proxyAgentsHttps = new HttpsProxyAgent(process.env.PROXY_URL);
 
   try {
     const responseStep1 = await fetch('https://api.ipify.org?format=json', {
       headers: {
         'Content-Type': 'application/json',
-        // 'Proxy-Authorization': proxyAuth,
       },
       agent: proxyAgentsHttps,
     });
@@ -28,10 +29,9 @@ async function testProxy(action) {
   }
 }
 
-// Example usage
 (async () => {
   try {
-    const protectionToken = await testProxy();
+    await testProxy();
   } catch (error) {
     console.error('Error:', error);
   }

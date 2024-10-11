@@ -1,24 +1,16 @@
-import fetch from "node-fetch";
-import { HttpsProxyAgent } from "https-proxy-agent";
-import { HttpProxyAgent } from "http-proxy-agent";
+const fetch = require("node-fetch");
+const { HttpsProxyAgent } = require("https-proxy-agent");
+const { HttpProxyAgent } = require("http-proxy-agent");
+const dotenv = require("dotenv");
+dotenv.config();
 
 // Main function to get protection token
 async function getProtectionToken(action) {
   const fingerprint = "2534243ac8343e26414c4b16b75ce003";
-  // const captchaV3Token = "03AGdBq24gK9a6F7b8c9dE1fG2hI3jK4lM5nO6pQ7rS8tU9vW0xY1zA2bC3D4eF5gH6iJ7kL8mN9oP0qR1sT2uV3wX4yZ5";
   const captchaV3Token =
     "03AFcWeA5lQtBRwhMT3AShrei3SK1vwI4ugXuL0ntUZUtDhHGpVPT84QwjwOJnNFEsyWLlcgdNe5LwPdYvQBc9-EhsR_B1kazV4rufNB2Fkw0Wmq5A9j00fBA0QKl1qjrCdH1m6afsUqpGxqRGWog53Lo4B0aNYxuWJjuRZQfAZ6gcee7CKdvKCc0R0pIGAC74B13xiXccqLmnvr7lG-g5cLSzEJhoH6jvMuUUnE4OAlYpTQu8wtTNQ40l8Cu_aIoznQynU9r4JECUGTKFRm1tOU2B949LTFtDH4A4Hh2sEHhJIU6oNshxSrJTVoQzt7_LO1VeCZ8FDv2y6NeHEvi-A8Td8OG7DE96FwZKVx_2y6UI4Zo3ke5LAVkc2Z6p6YKwr24k98c3lxqE9OI9UmMKwV0qENYwzq4C534xN9GJhsHD2Ce5zghE-IlsuPUf3Q_8KZJWpTOFSftqAiJmJGTGQxLD-i8bgjyjkgvfnvLrRgc_osnLRTvUdaNcu5ETwjYggQ5xrXzybRPQQxlNZFinE-lCyN66rsf1znIq1JwZLA3Ndf12EqJ_NJiycYLi82e7xj_1ML-bYdo-KMfVLmWRPlfBwPM1E3RhqXAyZw79fZyeloPu5WbcNqbGgAmFzWXmXFzLFq0VAkMvxlhToOzSifkKX-LidDs2d-3XnH4694FzMzzVnH4b7O3ADEhqpgMmvtcyV3hEw2Hh-WAluOk0Wkhh_SGcXTUjsZAMDfoWqUQs-0I3W4J2-rcI8agc06lO8ju1TjeP-9ck0OxxTA1CqFJG5vai_D-T2QC7zxP7QnkTBOFrho4rbF46RF9C3Jgkytvoam097uigaHvKd0eKP3VEkg9lj_Ego51jBjrzGg_7oH3JbCdaPgI";
-  const proxyAgentsHttps = new HttpsProxyAgent("http://43dle0eolrojlw1ovjpdj:y5inwf9thsgg1uev047de4@20.62.44.172:8888");
-  const proxyAgent = new HttpProxyAgent("http://43dle0eolrojlw1ovjpdj:y5inwf9thsgg1uev047de4@20.62.44.172:8888");
-  // const proxyAuth = 'Basic ' + Buffer.from('43dle0eolrojlw1ovjpdj:y5inwf9thsgg1uev047de4').toString('base64');
-
-  // fetch("https://spesaonline.conad.it/api/common/protection.json?step=one", {
-  //   "headers": {
-
-  //   },
-  //   "body": "{\"captchaToken\":\"03AFcWeA5lQtBRwhMT3AShrei3SK1vwI4ugXuL0ntUZUtDhHGpVPT84QwjwOJnNFEsyWLlcgdNe5LwPdYvQBc9-EhsR_B1kazV4rufNB2Fkw0Wmq5A9j00fBA0QKl1qjrCdH1m6afsUqpGxqRGWog53Lo4B0aNYxuWJjuRZQfAZ6gcee7CKdvKCc0R0pIGAC74B13xiXccqLmnvr7lG-g5cLSzEJhoH6jvMuUUnE4OAlYpTQu8wtTNQ40l8Cu_aIoznQynU9r4JECUGTKFRm1tOU2B949LTFtDH4A4Hh2sEHhJIU6oNshxSrJTVoQzt7_LO1VeCZ8FDv2y6NeHEvi-A8Td8OG7DE96FwZKVx_2y6UI4Zo3ke5LAVkc2Z6p6YKwr24k98c3lxqE9OI9UmMKwV0qENYwzq4C534xN9GJhsHD2Ce5zghE-IlsuPUf3Q_8KZJWpTOFSftqAiJmJGTGQxLD-i8bgjyjkgvfnvLrRgc_osnLRTvUdaNcu5ETwjYggQ5xrXzybRPQQxlNZFinE-lCyN66rsf1znIq1JwZLA3Ndf12EqJ_NJiycYLi82e7xj_1ML-bYdo-KMfVLmWRPlfBwPM1E3RhqXAyZw79fZyeloPu5WbcNqbGgAmFzWXmXFzLFq0VAkMvxlhToOzSifkKX-LidDs2d-3XnH4694FzMzzVnH4b7O3ADEhqpgMmvtcyV3hEw2Hh-WAluOk0Wkhh_SGcXTUjsZAMDfoWqUQs-0I3W4J2-rcI8agc06lO8ju1TjeP-9ck0OxxTA1CqFJG5vai_D-T2QC7zxP7QnkTBOFrho4rbF46RF9C3Jgkytvoam097uigaHvKd0eKP3VEkg9lj_Ego51jBjrzGg_7oH3JbCdaPgI\",\"feBot\":false,\"fingerprint\":\"2534243ac8343e26414c4b16b75ce003\",\"action\":\"entryaccess\",\"infos\":null}",
-  //   "method": "POST"
-  // });
+  const proxyAgentsHttps = new HttpsProxyAgent(process.env.PROXY_URL);
+  const proxyAgent = new HttpProxyAgent(process.env.PROXY_URL);
 
   try {
     const responseStep1 = await fetch("https://spesaonline.conad.it/api/common/protection.json?step=one", {
