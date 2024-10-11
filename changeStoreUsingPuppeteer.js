@@ -7,8 +7,6 @@ dotenv.config();
 
 puppeteer.use(StealthPlugin());
 
-
-// Start of Selection
 const proxyAgent = new HttpsProxyAgent(process.env.PROXY_URL);
 
 async function logToBrowserConsole(page, message) {
