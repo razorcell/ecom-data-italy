@@ -43,7 +43,7 @@ This project is designed to interact with the online shopping platform using var
 
 ### Running the Puppeteer Script
 
-The script `changeStoreUsingPuppeteer.js` automates the process of changing stores on the Conad platform.
+The script `changeStoreUsingPuppeteer.js` automates the process of changing stores in the Ecom platform.
 
 To run the script:
     ```
