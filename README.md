@@ -21,7 +21,7 @@ This project is designed to interact with the online shopping platform using var
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/razorcell/ecom-data-italy
    ```
 
 2. Navigate to the project directory:
